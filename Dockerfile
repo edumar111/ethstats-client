@@ -40,17 +40,17 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends git ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
-RUN useradd -m -d /home/ethnetintel -s /bin/bash ethnetintel && \
-    chown -R ethnetintel:ethnetintel /home/ethnetintel
-
-USER ethnetintel
+RUN useradd -m -d /home/ethnetintel -s /bin/bash ethnetintel
 
 RUN git clone https://github.com/cubedro/eth-net-intelligence-api /home/ethnetintel/eth-net-intelligence-api && \
     cd /home/ethnetintel/eth-net-intelligence-api && \
     npm install && \
-    npm install -g pm2
+    npm install -g pm2 && \
+    chown -R ethnetintel:ethnetintel /home/ethnetintel
 
-RUN printf '#!/bin/bash\nset -e\ncd /home/ethnetintel/eth-net-intelligence-api\npm2 start ./app.json\ntail -f /home/ethnetintel/.pm2/logs/node-app-out-0.log\n' > /home/ethnetintel/startscript.sh && \
+USER ethnetintel
+
+RUN printf '#!/bin/bash\nset -e\ncd /home/ethnetintel/eth-net-intelligence-api\npm2-runtime start ./app.json\n' > /home/ethnetintel/startscript.sh && \
     chmod +x /home/ethnetintel/startscript.sh
 
 ENTRYPOINT ["/home/ethnetintel/startscript.sh"]
