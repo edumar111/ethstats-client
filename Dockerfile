@@ -32,30 +32,25 @@
 ## If you now want to deploy a new client version, just redo the second step.
 
 
-FROM debian
+FROM node:20-bookworm-slim
 
-RUN apt-get update &&\
-    apt-get install -y curl git-core &&\
-    curl -sL https://deb.nodesource.com/setup | bash - &&\
-    apt-get update &&\
-    apt-get install -y nodejs
+WORKDIR /home/ethnetintel
 
-RUN apt-get update &&\
-    apt-get install -y build-essential
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN adduser ethnetintel
-
-RUN cd /home/ethnetintel &&\
-    git clone https://github.com/cubedro/eth-net-intelligence-api &&\
-    cd eth-net-intelligence-api &&\
-    npm install &&\
-    npm install -g pm2
-
-RUN echo '#!/bin/bash\nset -e\n\ncd /home/ethnetintel/eth-net-intelligence-api\n/usr/bin/pm2 start ./app.json\ntail -f \
-    /home/ethnetintel/.pm2/logs/node-app-out-0.log' > /home/ethnetintel/startscript.sh
-
-RUN chmod +x /home/ethnetintel/startscript.sh &&\
-    chown -R ethnetintel. /home/ethnetintel
+RUN useradd -m -d /home/ethnetintel -s /bin/bash ethnetintel && \
+    chown -R ethnetintel:ethnetintel /home/ethnetintel
 
 USER ethnetintel
+
+RUN git clone https://github.com/cubedro/eth-net-intelligence-api /home/ethnetintel/eth-net-intelligence-api && \
+    cd /home/ethnetintel/eth-net-intelligence-api && \
+    npm install && \
+    npm install -g pm2
+
+RUN printf '#!/bin/bash\nset -e\ncd /home/ethnetintel/eth-net-intelligence-api\npm2 start ./app.json\ntail -f /home/ethnetintel/.pm2/logs/node-app-out-0.log\n' > /home/ethnetintel/startscript.sh && \
+    chmod +x /home/ethnetintel/startscript.sh
+
 ENTRYPOINT ["/home/ethnetintel/startscript.sh"]
