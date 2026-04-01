@@ -1,24 +1,23 @@
 [
   {
-    "name"              : "node-app",
-    "script"            : "app.js",
-    "log_date_format"   : "YYYY-MM-DD HH:mm Z",
-    "merge_logs"        : false,
-    "watch"             : false,
-    "max_restarts"      : 10,
-    "exec_interpreter"  : "node",
-    "exec_mode"         : "fork_mode",
-    "env":
-    {
-      "NODE_ENV"        : "production",
-      "RPC_HOST"        : "localhost",
-      "RPC_PORT"        : "8545",
-      "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "",
-      "CONTACT_DETAILS" : "",
-      "WS_SERVER"       : "wss://rpc.ethstats.net",
-      "WS_SECRET"       : "see http://forum.ethereum.org/discussion/2112/how-to-add-yourself-to-the-stats-dashboard-its-not-automatic",
-      "VERBOSITY"       : 2
+    "name": "writer-ethstats-client",
+    "script": "app.js",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "merge_logs": false,
+    "watch": false,
+    "max_restarts": 10,
+    "exec_interpreter": "node",
+    "exec_mode": "fork_mode",
+    "env": {
+      "NODE_ENV": "production",
+      "RPC_HOST": "10.10.0.10",
+      "RPC_PORT": "4546",
+      "LISTENING_PORT": "60607",
+      "INSTANCE_NAME": "CBWEB3_WRITER_1",
+      "CONTACT_DETAILS": "edumar111@gmail.com",
+      "WS_SERVER": "wss://monitor.cbweb3.lacnet.com",
+      "WS_SECRET": "cbweb32026Force",
+      "VERBOSITY": 2
     }
   }
 ]

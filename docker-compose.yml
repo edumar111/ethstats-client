@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  writer-ethstats-client:
+    container_name: writer-ethstats-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+# docker compose up -d --build
+# docker logs -f writer-ethstats-client
