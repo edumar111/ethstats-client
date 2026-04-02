@@ -11,7 +11,7 @@
     "env": {
       "NODE_ENV": "production",
       "RPC_HOST": "10.10.0.10",
-      "RPC_PORT": "4546",
+      "RPC_PORT": "4545",
       "LISTENING_PORT": "60607",
       "INSTANCE_NAME": "CBWEB3_WRITER_1",
       "CONTACT_DETAILS": "edumar111@gmail.com",
