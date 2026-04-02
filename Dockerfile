@@ -42,7 +42,7 @@ RUN apt-get update && \
 
 RUN useradd -m -d /home/ethnetintel -s /bin/bash ethnetintel
 
-RUN git clone https://github.com/cubedro/eth-net-intelligence-api /home/ethnetintel/eth-net-intelligence-api && \
+RUN git clone https://github.com/edumar111/ethstats-client /home/ethnetintel/eth-net-intelligence-api && \
     cd /home/ethnetintel/eth-net-intelligence-api && \
     npm install && \
     npm install -g pm2 && \
