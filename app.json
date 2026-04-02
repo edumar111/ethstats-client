@@ -14,10 +14,54 @@
       "RPC_PORT": "4545",
       "LISTENING_PORT": "60607",
       "INSTANCE_NAME": "CBWEB3_WRITER_1",
-      "CONTACT_DETAILS": "edumar111@gmail.com",
+      "CONTACT_DETAILS": "emarchena@lnet.com",
+      "WS_SERVER": "wss://monitor.cbweb3.lacnet.com",
+      "WS_SECRET": "cbweb32026Force",
+      "VERBOSITY": 2
+    }
+  },
+    {
+    "name": "boot-ethstats-client",
+    "script": "app.js",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "merge_logs": false,
+    "watch": false,
+    "max_restarts": 10,
+    "exec_interpreter": "node",
+    "exec_mode": "fork_mode",
+    "env": {
+      "NODE_ENV": "production",
+      "RPC_HOST": "10.10.0.10",
+      "RPC_PORT": "5545",
+      "LISTENING_PORT": "60606",
+      "INSTANCE_NAME": "CBWEB3_BOOT_1",
+      "CONTACT_DETAILS": "emarchena@lnet.com",
+      "WS_SERVER": "wss://monitor.cbweb3.lacnet.com",
+      "WS_SECRET": "cbweb32026Force",
+      "VERBOSITY": 2
+    }
+  },
+    {
+    "name": "validator-ethstats-client",
+    "script": "app.js",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "merge_logs": false,
+    "watch": false,
+    "max_restarts": 10,
+    "exec_interpreter": "node",
+    "exec_mode": "fork_mode",
+    "env": {
+      "NODE_ENV": "production",
+      "RPC_HOST": "10.10.0.10",
+      "RPC_PORT": "3545",
+      "LISTENING_PORT": "60605",
+      "INSTANCE_NAME": "CBWEB3_VALIDATOR_1",
+      "CONTACT_DETAILS": "emarchena@lnet.com",
       "WS_SERVER": "wss://monitor.cbweb3.lacnet.com",
       "WS_SECRET": "cbweb32026Force",
       "VERBOSITY": 2
     }
   }
+
+
 ]
