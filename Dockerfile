@@ -37,15 +37,13 @@ FROM node:20-bookworm-slim
 WORKDIR /home/ethnetintel
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates && \
+    apt-get install -y --no-install-recommends git ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -d /home/ethnetintel -s /bin/bash ethnetintel
 
-# 👉 Copia TODO el repo local (porque ya estás dentro de ethstats-client)
 COPY . /home/ethnetintel/ethstats-client
 
-# Instala dependencias
 RUN cd /home/ethnetintel/ethstats-client && \
     npm install && \
     npm install -g pm2 && \
@@ -53,7 +51,6 @@ RUN cd /home/ethnetintel/ethstats-client && \
 
 USER ethnetintel
 
-# Script de arranque
 RUN printf '#!/bin/bash\nset -e\ncd /home/ethnetintel/ethstats-client\npm2-runtime start ./app.json\n' > /home/ethnetintel/startscript.sh && \
     chmod +x /home/ethnetintel/startscript.sh
 
